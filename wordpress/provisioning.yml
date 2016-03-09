@@ -5,7 +5,7 @@
   vars:  
     #your region  
     region: us-east-1
-    keyname: cf-prov-1
+    keyname: cf-wp
     #your ip address
     allowed_ip: 0.0.0.0/0
     instance_type: t2.micro     
@@ -62,9 +62,9 @@
         image: "{{ image }}"  
         wait: yes    
         group: sg_wordpress
-        id: wordpress_launch_2  
+        id: wordpress_launch_33  
         instance_tags:  
-          Name: wordpress-1  
+          Name: wordpress-33 
           class: wordpress
       register: ec2    
     - name: associate new EIP for the instance  
