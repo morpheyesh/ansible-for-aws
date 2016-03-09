@@ -3,7 +3,7 @@
   connection: local  
   gather_facts: no  
   vars:
-    region: us-east-1
+    region: us-west-2
     keyname: cf-pb2
   tasks:  
     - name: create key pair  

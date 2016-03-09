@@ -2,7 +2,7 @@ import ansible.playbook
 from ansible import callbacks
 from ansible import utils
 ANSIBLE_HOSTS = 'hosts'
-PLAYBOOK = 'keypair.yml'
+PLAYBOOK = 'wordpress/provisioning.yml'
 def deploy():
     stats = callbacks.AggregateStats()
     playbook_cb = callbacks.PlaybookCallbacks(verbose=utils.VERBOSITY)
