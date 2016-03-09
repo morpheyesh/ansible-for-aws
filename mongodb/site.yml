@@ -1,0 +1,8 @@
+---
+- name: install mongodb
+  hosts: tag_class_mongodb
+  sudo: yes
+
+  roles:
+    - mongodb
+
