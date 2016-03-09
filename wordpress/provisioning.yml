@@ -6,6 +6,7 @@
     #your region
     region: us-east-1
     keyname: cf-prov-2
+
     #your ip address
     allowed_ip: 0.0.0.0/0
     instance_type: t2.micro
@@ -62,9 +63,15 @@
         image: "{{ image }}"
         wait: yes
         group: sg_wordpress
+<<<<<<< HEAD
         id: wordpress_launch_2
         instance_tags:
           Name: wordpress-1
+=======
+        id: wordpress_launch_33
+        instance_tags:
+          Name: wordpress-33
+>>>>>>> origin/zone-changes
           class: wordpress
       register: ec2
     - name: associate new EIP for the instance

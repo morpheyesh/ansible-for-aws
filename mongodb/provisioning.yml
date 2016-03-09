@@ -1,5 +1,6 @@
 ---  
-- hosts: localhost  
+- name: Provision an EC2 node
+  hosts: localhost  
   connection: local  
   gather_facts: no    
   vars:  
@@ -34,6 +35,10 @@
         description: security group for mongodb host
         rules:
           - proto: tcp  
+            from_port: 22  
+            to_port: 22  
+            cidr_ip: "{{ allowed_ip }}"
+          - proto: tcp  
             from_port: 27017
             to_port: 27017
             cidr_ip: 0.0.0.0/0
@@ -51,11 +56,11 @@
         image: "{{ image }}"  
         wait: yes    
         group: sg_mongodb
-        id: mongodb_launch  
         instance_tags:  
-          Name: mongodb-1  
+          Name: mongodb-3
           class: mongodb
-      register: ec2    
+      register: ec2 
+   
     - name: associate new EIP for the instance  
       tags: eip      
       local_action:
@@ -64,3 +69,17 @@
         instance_id: "{{ item.id }}"
       with_items: ec2.instances   
       when: item.id is defined   
+
+    - name: Wait for SSH to come up
+      local_action: wait_for host={{ item.public_dns_name }} state=started
+      with_items: ec2.instances
+
+- name: With the newly provisioned EC2 node install Mongodb
+  hosts: tag_class_mongodb
+  sudo: yes
+  vars:
+    mongodb_users:
+      - { username: foo, password: bar, database: cloudifice }
+
+  roles:
+    - mongodb

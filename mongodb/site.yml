@@ -2,6 +2,9 @@
 - name: install mongodb
   hosts: tag_class_mongodb
   sudo: yes
+  vars:
+    mongodb_users:
+      - { username: foo, password: bar, database: cloudifice }
 
   roles:
     - mongodb
