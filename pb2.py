@@ -2,7 +2,7 @@ import ansible.playbook
 from ansible import callbacks
 from ansible import utils
 ANSIBLE_HOSTS = 'hosts'
-PLAYBOOK = 'wordpress/provisioning.yml'
+PLAYBOOK = 'mongodb/provisioning.yml'
 
 def deploy():
     stats = callbacks.AggregateStats()
