@@ -4,19 +4,19 @@
   gather_facts: no    
   vars:  
     #your region  
-    region: ap-southeast-2    
+    region: us-east-1a
   tasks:  
     - name: EC2 basic provisioning  
       local_action:  
         module: ec2  
         region: "{{ region }}"  
-        key_name: yan-key-pair-apsydney  
-        instance_type: t1.micro  
-        image: ami-6bf99c51  
+        key_name: cf3
+        instance_type: t2.micro  
+        image: 	ami-fce3c696  
         wait: yes    
-        group: sg_webserver_apsydney
+        group: sg_cf
         instance_tags:  
           group: webserver  
-        exact_count: 3  
+        exact_count: 1  
         count_tag:  
           group: webserver

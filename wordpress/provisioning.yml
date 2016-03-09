@@ -4,12 +4,12 @@
   gather_facts: no    
   vars:  
     #your region  
-    region: ap-southeast-2
-    keyname: wordpress-apsydney
+    region: us-east-1
+    keyname: cf-prov-1
     #your ip address
-    allowed_ip: 123.243.16.53/32
+    allowed_ip: 0.0.0.0/0
     instance_type: t2.micro     
-    image: ami-d9fe9be3
+    image: ami-fce3c696
   tasks:  
     - name: create key pair  
       tags: keypair  
@@ -30,7 +30,7 @@
         module: ec2_group    
         region: "{{ region }}"
         #your security group name  
-        name: sg_wordpress_apsydney    
+        name: sg_wordpress
         description: security group for apsydney webserver host
         rules:
           # allow ssh access from your ip address  
@@ -61,7 +61,7 @@
         instance_type: "{{ instance_type }}"    
         image: "{{ image }}"  
         wait: yes    
-        group: sg_wordpress_apsydney  
+        group: sg_wordpress
         id: wordpress_launch_2  
         instance_tags:  
           Name: wordpress-1  

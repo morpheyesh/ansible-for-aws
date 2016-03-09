@@ -3,8 +3,8 @@
   connection: local  
   gather_facts: no  
   vars:
-    region: ap-southeast-2
-    keyname: yan1
+    region: us-east-1
+    keyname: cf-pb2
   tasks:  
     - name: create key pair  
       local_action:  
