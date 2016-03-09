@@ -10,11 +10,11 @@
       local_action:  
         module: ec2_key  
         region: "{{ region }}"
-        name: yan1
+        name: "{{ keyname }}"
 #        state: absent
       register: mykey
     - name: write to file
-      local_action: shell echo -e "{{ item.value.private_key }}" > ~/.ssh/"{{ keyname }}".pem && chmod 600 ~/.ssh/"{{ keyname }}".pem
+      local_action: shell echo -e "{{ item.value.private_key }}" > ~/.ssh/"{{ keyname }}".pem && chmod 600 ~/.ssh/"{{ keyname }}".pem && sed -i 's/^-e //g' ~/.ssh/"{{ keyname }}".pem
       with_dict: mykey
       when: item.value.private_key is defined
    
